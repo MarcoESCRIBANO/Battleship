@@ -8,7 +8,7 @@ namespace ProjetBattleship
         {
             Console.WriteLine("*** Touché Coulé ***");
             Game game = new Game();
-            game.start("Marco", "Patricia");
+            game.start("Marco", "Bastien");
         }
 	}
 }
