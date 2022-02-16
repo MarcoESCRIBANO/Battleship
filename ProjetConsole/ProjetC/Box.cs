@@ -7,7 +7,7 @@ namespace ProjetBattleship
         {
 
         }
-		int touche; // #Touche(2), #Rien(0), #Coule(3), #Plouf(1)
+		private int touche = 0; // #Touche(2), #Rien(0), #Coule(3), #Plouf(1)
 		public bool printBateau;
 		Bateaux bateau = null;
 
@@ -28,7 +28,7 @@ namespace ProjetBattleship
 			}
 		}
 
-		public void tir()
+		public int tir()
 		{
 			if (touche == 0) // touche == Rien
 			{
@@ -51,7 +51,12 @@ namespace ProjetBattleship
 				{
 					touche = 1;
 				}
+				return touche;
 			}
+            else
+            {
+				return -1;
+            }
 		}
 	}
 }

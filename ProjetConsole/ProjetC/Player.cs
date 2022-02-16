@@ -13,7 +13,7 @@ namespace ProjetBattleship
 			this.Name = Name;
 		}
 
-		public void placerBateau(string nameBateau, char x, int y, string sens) // (x et y corresponde à l'arrière du bateau)
+		public bool placerBateau(string nameBateau, char x, int y, string sens) // (x et y corresponde à l'arrière du bateau)
 		{
 			for (int id = 0; id < bateaux.Length; id++)
             {
@@ -30,40 +30,112 @@ namespace ProjetBattleship
 					{
 						case "haut":
 							xFront = X;
-							yFront = Y + bateaux[id].getTaille();
-							break;
+							yFront = Y - bateaux[id].getTaille() - 1;
+							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
+							{
+								/*for (int i = Y; i>yFront; i--)
+                                {
+									if ()
+									{
+
+									}
+								}*/
+
+								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								return false;
+							}
+							else
+							{
+								Console.WriteLine("Bateaux en dehors de la map");
+								return true;
+							}
 						case "bas":
 							xFront = X;
-							yFront = Y - bateaux[id].getTaille();
-							break;
+							yFront = Y + bateaux[id].getTaille() - 1;
+							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
+							{
+								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								return false;
+							}
+							else
+							{
+								Console.WriteLine("Bateaux en dehors de la map");
+								return true;
+							}
 						case "droite":
-							xFront = X + bateaux[id].getTaille();
+							xFront = X + bateaux[id].getTaille() - 1;
 							yFront = Y;
-							break;
+							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
+							{
+								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								return false;
+							}
+							else
+							{
+								Console.WriteLine("Bateaux en dehors de la map");
+								return true;
+							}
 						case "gauche":
-							xFront = X - bateaux[id].getTaille();
+							xFront = X - bateaux[id].getTaille() - 1;
 							yFront = Y;
-							break;
+							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
+							{
+								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								return false;
+							}
+							else
+							{
+								Console.WriteLine("Bateaux en dehors de la map");
+								return true;
+							}
 						default:
-							xFront = X + bateaux[id].getTaille();
+							xFront = X + bateaux[id].getTaille() - 1;
 							yFront = Y;
-							break;
-					}
-					if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
-					{
-						grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
-					}
-					else
-					{
-						Console.WriteLine("Bateaux en dehors de la map");
+							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
+							{
+								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								return false;
+							}
+							else
+							{
+								Console.WriteLine("Bateaux en dehors de la map");
+								return true;
+							}
 					}
 				}
 			}
+			return true;
 		}
 
-		public void attaquer(char X, int Y)
+		public void attaquer(char x, int y)
 		{
-
+			int touche;
+			bool echec = true;
+			int X = Convert.ToByte(x) - 65;
+			int Y = y - 1;
+			while (echec)
+            {
+				touche = grilleJoueur.getBox(X, Y).tir();
+				switch (touche)
+				{
+					case 1:
+						Console.WriteLine("Loupé !");
+						echec = false;
+						break;
+					case 2:
+						Console.WriteLine("Touché !");
+						echec = false;
+						break;
+					case 3:
+						Console.WriteLine("Coulé !");
+						echec = false;
+						break;
+					default:
+						Console.WriteLine("Vous avez déjà tiré ici...");
+						echec = true;
+						break;
+				}
+			}
 		}
 
 		public bool isFirstTour()

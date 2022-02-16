@@ -19,25 +19,38 @@ namespace ProjetBattleship
 		{
 			int currentPlayer = 0;
 			int nbJoueur = players.Length;
+			Console.WriteLine("Nombre de Joueur : " + nbJoueur);
 			while (InGame)
 			{
-
+				Console.WriteLine("C'est à " + players[currentPlayer].getName() + " de jouer");
 				//afficherMap();
 				if (players[currentPlayer].isFirstTour())
 				{
+					bool placer;
+					char x;
+					int y;
+					string sens;
+					Console.WriteLine("Placer vos bateaux");
 					foreach (Bateaux bateau in players[currentPlayer].bateaux)
 					{
-						// Début Recupérer coordoneé
-						Console.WriteLine("Placer vos bateaux");
-						Console.WriteLine("Enter les coordonnée du " + bateau.Nom);
-						Console.WriteLine("colonne (A à J):");
-						char x = Convert.ToChar(Console.ReadLine());
-						Console.WriteLine("ligne (1 à 10):");
-						int y = Convert.ToInt32(Console.ReadLine());
-						Console.WriteLine("sens (haut, bas, droite, gauche):");
-						string sens = Console.ReadLine();
-						// Fin Recupérer coordoneé
-						players[currentPlayer].placerBateau(bateau.Nom, x, y, sens);
+						placer = true;
+                        
+                        while (placer)
+                        {
+							// Début Recupérer coordoneé
+
+							Console.WriteLine("Enter les coordonnée du " + bateau.Nom + " (" + bateau.getTaille() + " cases)");
+							Console.WriteLine("colonne (A à J):");
+							x = Convert.ToChar(Console.ReadLine());
+							Console.WriteLine("ligne (1 à 10):");
+							y = Convert.ToInt32(Console.ReadLine());
+							Console.WriteLine("sens (haut, bas, droite, gauche):");
+							sens = Console.ReadLine();
+
+							// Fin Recupérer coordoneé
+							placer = players[currentPlayer].placerBateau(bateau.Nom, x, y, sens);
+						}
+
 					}
 					
 				}
@@ -51,8 +64,8 @@ namespace ProjetBattleship
 					int y = Convert.ToInt32(Console.ReadLine());
 					players[currentPlayer].attaquer(x, y);
 				}
-				currentPlayer = (currentPlayer + 1) % nbJoueur;
 				players[currentPlayer].nextTour();
+				currentPlayer = (currentPlayer + 1) % nbJoueur;
 			}
 		}
 	}
