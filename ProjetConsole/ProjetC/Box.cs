@@ -28,6 +28,21 @@ namespace ProjetBattleship
 			}
 		}
 
+
+		public bool haveShip()
+		{
+			if (bateau != null)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+
+
 		public int tir()
 		{
 			if (touche == 0) // touche == Rien

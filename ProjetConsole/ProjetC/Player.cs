@@ -33,20 +33,23 @@ namespace ProjetBattleship
 							yFront = Y - bateaux[id].getTaille() - 1;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								/*for (int i = Y; i>yFront; i--)
+                                for (int i = Y; i>yFront; i--)
                                 {
-									if ()
+									if (grilleJoueur.getBox(xFront, i).haveShip())
 									{
-
+										Console.WriteLine("Un bateau se trouve déjà à cet emplacement");
+										return true;
 									}
-								}*/
-
-								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								}
+								for (int i = Y; i > yFront; i--)
+								{
+									grilleJoueur.getBox(xFront, i).affecterUnBateau(bateaux[id]);
+								}
 								return false;
 							}
 							else
 							{
-								Console.WriteLine("Bateaux en dehors de la map");
+								Console.WriteLine("Bateau en dehors de la map");
 								return true;
 							}
 						case "bas":
@@ -54,12 +57,23 @@ namespace ProjetBattleship
 							yFront = Y + bateaux[id].getTaille() - 1;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								for (int i = Y; i < yFront; i++)
+								{
+									if (grilleJoueur.getBox(xFront, i).haveShip())
+									{
+										Console.WriteLine("Un bateau se trouve déjà à cet emplacement");
+										return true;
+									}
+								}
+								for (int i = Y; i < yFront; i++)
+								{
+									grilleJoueur.getBox(xFront, i).affecterUnBateau(bateaux[id]);
+								}
 								return false;
 							}
 							else
 							{
-								Console.WriteLine("Bateaux en dehors de la map");
+								Console.WriteLine("Bateau en dehors de la map");
 								return true;
 							}
 						case "droite":
@@ -67,12 +81,23 @@ namespace ProjetBattleship
 							yFront = Y;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								for (int i = X; i < xFront; i++)
+								{
+									if (grilleJoueur.getBox(i, yFront).haveShip())
+									{
+										Console.WriteLine("Un bateau se trouve déjà à cet emplacement");
+										return true;
+									}
+								}
+								for (int i = X; i < xFront; i++)
+								{
+									grilleJoueur.getBox(i, yFront).affecterUnBateau(bateaux[id]);
+								}
 								return false;
 							}
 							else
 							{
-								Console.WriteLine("Bateaux en dehors de la map");
+								Console.WriteLine("Bateau en dehors de la map");
 								return true;
 							}
 						case "gauche":
@@ -80,12 +105,23 @@ namespace ProjetBattleship
 							yFront = Y;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								for (int i = X; i > xFront; i--)
+								{
+									if (grilleJoueur.getBox(i, yFront).haveShip())
+									{
+										Console.WriteLine("Un bateau se trouve déjà à cet emplacement");
+										return true;
+									}
+								}
+								for (int i = X; i > xFront; i--)
+								{
+									grilleJoueur.getBox(i, yFront).affecterUnBateau(bateaux[id]);
+								}
 								return false;
 							}
 							else
 							{
-								Console.WriteLine("Bateaux en dehors de la map");
+								Console.WriteLine("Bateau en dehors de la map");
 								return true;
 							}
 						default:
@@ -93,12 +129,23 @@ namespace ProjetBattleship
 							yFront = Y;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								grilleJoueur.placerBateau(bateaux[id], xBack, yBack, xFront, yFront);
+								for (int i = X; i < xFront; i++)
+								{
+									if (grilleJoueur.getBox(i, yFront).haveShip())
+									{
+										Console.WriteLine("Un bateau se trouve déjà à cet emplacement");
+										return true;
+									}
+								}
+								for (int i = X; i < xFront; i++)
+								{
+									grilleJoueur.getBox(i, yFront).affecterUnBateau(bateaux[id]);
+								}
 								return false;
 							}
 							else
 							{
-								Console.WriteLine("Bateaux en dehors de la map");
+								Console.WriteLine("Bateau en dehors de la map");
 								return true;
 							}
 					}
@@ -107,34 +154,26 @@ namespace ProjetBattleship
 			return true;
 		}
 
-		public void attaquer(char x, int y)
+		public bool attaquer(char x, int y)
 		{
 			int touche;
-			bool echec = true;
 			int X = Convert.ToByte(x) - 65;
 			int Y = y - 1;
-			while (echec)
-            {
-				touche = grilleJoueur.getBox(X, Y).tir();
-				switch (touche)
-				{
-					case 1:
-						Console.WriteLine("Loupé !");
-						echec = false;
-						break;
-					case 2:
-						Console.WriteLine("Touché !");
-						echec = false;
-						break;
-					case 3:
-						Console.WriteLine("Coulé !");
-						echec = false;
-						break;
-					default:
-						Console.WriteLine("Vous avez déjà tiré ici...");
-						echec = true;
-						break;
-				}
+			touche = grilleJoueur.getBox(X, Y).tir(); //Pas la bonne grille
+			switch (touche)
+			{
+				case 1:
+					Console.WriteLine("Loupé !");
+					return false;
+				case 2:
+					Console.WriteLine("Touché !");
+					return false;
+				case 3:
+					Console.WriteLine("Coulé !");
+					return false;
+				default:
+					Console.WriteLine("Vous avez déjà tiré ici...");
+					return true;
 			}
 		}
 
