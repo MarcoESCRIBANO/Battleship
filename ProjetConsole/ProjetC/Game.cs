@@ -56,16 +56,25 @@ namespace ProjetBattleship
 				}
                 else
                 {
-					Console.WriteLine("Attaquer");
-					Console.WriteLine("Enter les coordonnéen où vous souhaitez attaquer");
-					Console.WriteLine("colonne (A à J):");
-					char x = Convert.ToChar(Console.ReadLine());
-					Console.WriteLine("ligne (1 à 10):");
-					int y = Convert.ToInt32(Console.ReadLine());
-					players[currentPlayer].attaquer(x, y);
+					bool attaquer = true;
+                    while (attaquer)
+                    {
+						Console.WriteLine("Attaquer");
+						Console.WriteLine("Enter les coordonnéen où vous souhaitez attaquer");
+						Console.WriteLine("colonne (A à J):");
+						char x = Convert.ToChar(Console.ReadLine());
+						Console.WriteLine("ligne (1 à 10):");
+						int y = Convert.ToInt32(Console.ReadLine());
+						attaquer = players[currentPlayer].attaquer(x, y, players[(currentPlayer + 1) % nbJoueur]);
+					}
 				}
 				players[currentPlayer].nextTour();
 				currentPlayer = (currentPlayer + 1) % nbJoueur;
+				if (players[currentPlayer].haveLost())
+				{
+					InGame = false;
+					Console.WriteLine(players[(currentPlayer + 1) % nbJoueur].getName() + " a gagné");
+				}
 			}
 		}
 	}

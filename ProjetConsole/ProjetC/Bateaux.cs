@@ -58,6 +58,10 @@ namespace ProjetBattleship
 		public void touche()
 		{
 			state -= 1;
+            if (state == 0)
+            {
+				death();
+			}
 		}
 
 		public int getState()

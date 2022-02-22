@@ -5,7 +5,7 @@ namespace ProjetBattleship
     {
 		private string Name;
 		public Bateaux[] bateaux = new Bateaux[] { new Bateaux("Torpilleur"), new Bateaux("Sous-Marin"), new Bateaux("Contre-Torpilleur"), new Bateaux("Croiseur"), new Bateaux("Porte-Avions") };
-		Grid grilleJoueur = new Grid(10, 1);
+		public Grid grilleJoueur = new Grid(10, 1);
 		private int nbTours = 0;
 
 		public Player(string Name)
@@ -33,7 +33,7 @@ namespace ProjetBattleship
 							yFront = Y - bateaux[id].getTaille() - 1;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-                                for (int i = Y; i>yFront; i--)
+                                for (int i = Y; i>=yFront; i--)
                                 {
 									if (grilleJoueur.getBox(xFront, i).haveShip())
 									{
@@ -41,7 +41,7 @@ namespace ProjetBattleship
 										return true;
 									}
 								}
-								for (int i = Y; i > yFront; i--)
+								for (int i = Y; i >= yFront; i--)
 								{
 									grilleJoueur.getBox(xFront, i).affecterUnBateau(bateaux[id]);
 								}
@@ -57,7 +57,7 @@ namespace ProjetBattleship
 							yFront = Y + bateaux[id].getTaille() - 1;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								for (int i = Y; i < yFront; i++)
+								for (int i = Y; i <= yFront; i++)
 								{
 									if (grilleJoueur.getBox(xFront, i).haveShip())
 									{
@@ -65,7 +65,7 @@ namespace ProjetBattleship
 										return true;
 									}
 								}
-								for (int i = Y; i < yFront; i++)
+								for (int i = Y; i <= yFront; i++)
 								{
 									grilleJoueur.getBox(xFront, i).affecterUnBateau(bateaux[id]);
 								}
@@ -81,7 +81,7 @@ namespace ProjetBattleship
 							yFront = Y;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								for (int i = X; i < xFront; i++)
+								for (int i = X; i <= xFront; i++)
 								{
 									if (grilleJoueur.getBox(i, yFront).haveShip())
 									{
@@ -89,7 +89,7 @@ namespace ProjetBattleship
 										return true;
 									}
 								}
-								for (int i = X; i < xFront; i++)
+								for (int i = X; i <= xFront; i++)
 								{
 									grilleJoueur.getBox(i, yFront).affecterUnBateau(bateaux[id]);
 								}
@@ -105,7 +105,7 @@ namespace ProjetBattleship
 							yFront = Y;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								for (int i = X; i > xFront; i--)
+								for (int i = X; i >= xFront; i--)
 								{
 									if (grilleJoueur.getBox(i, yFront).haveShip())
 									{
@@ -113,7 +113,7 @@ namespace ProjetBattleship
 										return true;
 									}
 								}
-								for (int i = X; i > xFront; i--)
+								for (int i = X; i >= xFront; i--)
 								{
 									grilleJoueur.getBox(i, yFront).affecterUnBateau(bateaux[id]);
 								}
@@ -129,7 +129,7 @@ namespace ProjetBattleship
 							yFront = Y;
 							if (xBack >= 0 && xBack < 10 && yBack >= 0 && yBack < 10 && xFront >= 0 && xFront < 10 && yFront >= 0 && yFront < 10)
 							{
-								for (int i = X; i < xFront; i++)
+								for (int i = X; i <= xFront; i++)
 								{
 									if (grilleJoueur.getBox(i, yFront).haveShip())
 									{
@@ -137,7 +137,7 @@ namespace ProjetBattleship
 										return true;
 									}
 								}
-								for (int i = X; i < xFront; i++)
+								for (int i = X; i <= xFront; i++)
 								{
 									grilleJoueur.getBox(i, yFront).affecterUnBateau(bateaux[id]);
 								}
@@ -154,12 +154,12 @@ namespace ProjetBattleship
 			return true;
 		}
 
-		public bool attaquer(char x, int y)
+		public bool attaquer(char x, int y, Player adversaire)
 		{
 			int touche;
 			int X = Convert.ToByte(x) - 65;
 			int Y = y - 1;
-			touche = grilleJoueur.getBox(X, Y).tir(); //Pas la bonne grille
+			touche = adversaire.grilleJoueur.getBox(X, Y).tir(); //Pas la bonne grille
 			switch (touche)
 			{
 				case 1:
@@ -203,6 +203,16 @@ namespace ProjetBattleship
         {
 			return Name;
         }
-
+		public bool haveLost()
+        {
+			foreach (Bateaux bateau in bateaux)
+			{
+				if (bateau.isAlive())
+                {
+					return false;
+                }
+			}
+			return true;
+        }
 	}
 }

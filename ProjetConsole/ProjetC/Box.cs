@@ -13,7 +13,9 @@ namespace ProjetBattleship
 
 		public void affecterUnBateau(Bateaux bateau)
 		{
+			
 			this.bateau = bateau;
+			Console.WriteLine("bateau "+ this.bateau.Nom+" affecter");
 		}
 
 		public void print()
@@ -49,6 +51,7 @@ namespace ProjetBattleship
 			{
 				if (bateau != null)
 				{
+
 					if (bateau.getState() > 0)
 					{
 						bateau.touche();
