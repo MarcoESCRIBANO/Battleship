@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1200
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 442}
   m_MaxSize: {x: 10000, y: 10000}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 392}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 1
-  controlID: 199
+  controlID: 27536
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 392}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 200
+  controlID: 27537
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 392}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 201
+  controlID: 27538
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1174
     height: 735.5
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 14}
@@ -401,7 +401,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1afbffff
+      m_ExpandedIDs: 5c0cffff800cfffff00dffff180effff220effff2c10ffff5010ffffc011ffffe811fffff211ffff7c69ffffa469fffffc6affff10dfffff36dfffffa6e0ffffcee0ffffe2e0ffff6efbffff769e0000aea700000428010036280100862a0100942a0100b42d01005c2e0100b42e0100222f01003a300100ce300100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.7579352, y: -0.01369383, z: 0.015918978, w: 0.6519919}
     speed: 2
-    m_Value: {x: -0.7579352, y: 0.01369383, z: -0.015918978, w: -0.65199196}
+    m_Value: {x: 0.7579351, y: -0.013693828, z: 0.015918976, w: 0.65199184}
   m_Size:
     m_Target: 49.20449
     speed: 2
@@ -604,22 +604,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: /Users/marco/Documents/$ Cours/C#/ProjetC/Battleship
+  m_LastProjectPath: /Users/marco/Documents/$ Cours/C#/Battleship
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 72550000
-    m_LastClickedID: 21874
-    m_ExpandedIDs: 00000000725500007455000076550000785500007a5500007c5500007e55000000ca9a3b
+    m_SelectedIDs: 3c550000
+    m_LastClickedID: 21820
+    m_ExpandedIDs: 000000001e550000205500002455000026550000285500002a5500003a55000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -647,7 +647,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000725500007455000076550000785500007a5500007c5500007e55000000ca9a3b
+    m_ExpandedIDs: 000000001e550000205500002455000026550000285500002a5500003a55000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000165c00008c41000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
